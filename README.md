@@ -9,7 +9,7 @@ $ python testsuite.py
 ### global parameters
 First element is global parameters :
 * Variables
-* Headers (They will be added / replace in all request)
+* Headers (They will be added / replaced in all requests)
 
 ```yaml
 - variables: {
@@ -69,8 +69,8 @@ Precise the variable to edit in the uri_var list. It will be update with global 
 Header values can be global variables.
 ```yaml
     headers: {
-    'my_header_1' : 'variable:bar_token',
-    'my_header_2': 'XXX'
+      'my_header_1' : 'variable:bar_token',
+      'my_header_2' : 'XXX'
   }
 ```
 
