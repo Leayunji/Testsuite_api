@@ -1,0 +1,51 @@
+- variables: {
+    'name': 'foobar',
+    'email': 'foo.bar@gmail.com',
+    'password' : 'xxxx'
+  }
+  headers: {
+    'Content-Type' : 'application/json'
+  }
+
+- name: "[ACCOUNT] Create Account"
+  method: 'POST'
+  url: 'http://localhost:8000'
+  uri: "/create_account"
+  body: {
+    'name' : 'variable:name',
+    'email' : 'variable:email',
+    'password': 'variable:password',
+  }
+  store_variable: [
+    'account_id'
+  ]
+  status_code: 200
+
+- name: "[ACCOUNT] Get authorization token"
+  method: 'GET'
+  url: 'http://localhost:8000'
+  uri: "/get_authorization/account_id"
+  uri_var: [
+    'account_id'
+  ]
+  store_variable: [
+    'token'
+  ]
+  status_code: 200
+
+- name: "[CONFIG] Create config"
+  method: 'POST'
+  url: 'http://localhost:8000'
+  uri: "/create_config/account_id"
+  uri_var: [
+    'account_id'
+  ]
+  headers: {
+    'Authorization' : 'variable:token'
+  }
+  body: {
+    'config' : 'desole je sais plus a quoi ressemble une config',
+  }
+  store_variable: [
+    'config_id'
+  ]
